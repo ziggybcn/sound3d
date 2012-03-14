@@ -1,0 +1,302 @@
+<html><head><title>blide\sound3d reference</title>
+<link rel=stylesheet Type=text/css href='../../../../doc/bmxstyle.css'>
+</head><body>
+<table width=100% cellspacing=0><tr align=center><td class=small>&nbsp;</td>
+<td class=small width=1%><b>blide.sound3d:</b></td>
+<td class=small width=1%><a href=#functions class=small>Functions</a></td>
+<td class=small width=1%><a href=#types class=small>Types</a></td>
+<td class=small width=1%><a href=#modinfo class=small>Modinfo</a></td>
+<td class=small width=1%><a href='../../../../mod/blide.mod/sound3d.mod/sound3d.bmx' class=small>Source</a></td>
+<td class=small>&nbsp;</td></tr></table>
+<h1>blide\sound3d</h1>
+<h2><a name=functions></a>Functions Summary</h2><table class=doc width=100%>
+<tr><td class=docleft width=1%><a href=#Audio3DDrives>Audio3DDrives</a></td><td class=docright>
+Returns a list (string array) of all the available 3D sound devices.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#EmitSound>EmitSound</a></td><td class=docright>
+This function is used to make a minib3d entity emit a sound.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#Enable3DSound>Enable3DSound</a></td><td class=docright>
+Enable OpenAL Audio.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#Enum3DSoundDevices>Enum3DSoundDevices</a></td><td class=docright>
+This function returns a list (string array) of all avaiable sound devices.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#Load3DSound>Load3DSound</a></td><td class=docright>
+This function loads a sound file and stores it on a T3DSound class instance.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#PlayMusic>PlayMusic</a></td><td class=docright>
+This function is used to make a minib3d entity emit a sound.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#SetAudio3DDriver>SetAudio3DDriver</a></td><td class=docright>
+Set a speciffic 3D sound device.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#SetListenerTargetEntity>SetListenerTargetEntity</a></td><td class=docright>
+This method associates a minib3d entity with the Sound3D listener <a href=#sListener3D>sListener3D</a>.
+</td></tr>
+</table>
+<h2><a name=types></a>Types Summary</h2><table class=doc width=100%>
+<tr><td class=docleft width=1%><a href=#s3DSoundEngine>s3DSoundEngine</a></td><td class=docright>
+This shared class handles some basic operations of the Sound3D module.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#sListener3D>sListener3D</a></td><td class=docright>
+Shared class that provides the needed methods to manipulate the global listener object of the Sound3D module.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#T3DSound>T3DSound</a></td><td class=docright>
+Any sound loaded in the Sound3D module, is a T3DSound.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#T3DSoundSource>T3DSoundSource</a></td><td class=docright>
+Sound source class. Every sound played, is played by a T3DSoundSource.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#TSource3D>TSource3D</a></td><td class=docright>
+This class is the basic sound emiter class.
+</td></tr>
+</table>
+<h2
+ id=functionsdet>Functions
+</h2>
+<table class=doc width=100% cellspacing=3 id=Audio3DDrives>
+<tr><td class=doctop colspan=2>Function Audio3DDrives:String[] ()</td></tr>
+<tr><td class=docleft width=1%>Returns</td><td class=docright>A one dimension array of strings containing the generated list of devices.</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Returns a list (string array) of all the available 3D sound devices.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=EmitSound>
+<tr><td class=doctop colspan=2>Function EmitSound:TSource3D(Sound:T3DSound, Entity:TEntity, Loop:Int = False)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This function is used to make a minib3d entity emit a sound.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The referenced Entity will be the sound emiter (the sound will be played FROM the entity location and with the entity orientation).
+A reference to the minib3d entity is stored inside the TSource3D object untill the sound ends playing, the entity is freed (freentity) or TSound3D.Free() method is called.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=Enable3DSound>
+<tr><td class=doctop colspan=2>Function Enable3DSound()</td></tr>
+<tr><td class=docleft width=1%>Returns</td><td class=docright>True if successful.</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Enable OpenAL Audio.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>After successfully executing this command, OpenAL audio drivers will be added
+to the array of drivers returned by <a href=#AudioDrivers>AudioDrivers</a>.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=Enum3DSoundDevices>
+<tr><td class=doctop colspan=2>Function Enum3DSoundDevices:String[] ()</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This function returns a list (string array) of all avaiable sound devices.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=Load3DSound>
+<tr><td class=doctop colspan=2>Function Load3DSound:T3DSound(url:Object, flags:Int = 0)</td></tr>
+<tr><td class=docleft width=1%>Returns</td><td class=docright>The T3DSound object that has been created, if the load process succeeds.</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This function loads a sound file and stores it on a T3DSound class instance.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Be sure to be loading MONO sound if you wish the sound file to be located at the 3D space.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=PlayMusic>
+<tr><td class=doctop colspan=2>Function PlayMusic:TSource3D(Sound:T3DSound, Loop:Byte = False)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This function is used to make a minib3d entity emit a sound.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=SetAudio3DDriver>
+<tr><td class=doctop colspan=2>Function SetAudio3DDriver(Driver:String)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Set a speciffic 3D sound device.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=SetListenerTargetEntity>
+<tr><td class=doctop colspan=2>Function SetListenerTargetEntity(Entity:TEntity)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This method associates a minib3d entity with the Sound3D listener <a href=#sListener3D>sListener3D</a>.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The the associated entity moves or turns, the audio listener will also, so in general terms, after calling this function, the minib3d object IS the listener.</td></tr>
+</table>
+<br>
+<h2
+ id=typesdet>Types
+</h2>
+<table class=doc width=100% cellspacing=3 id=s3DSoundEngine>
+<tr><td class=doctop colspan=2>Type s3DSoundEngine Abstract</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This shared class handles some basic operations of the Sound3D module.</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=s3DSoundEngine_functions></a>Functions Summary</th></tr>
+<tr><td class=docleft width=1%><a href=#Audio3DDevices>Audio3DDevices</a></td><td class=docright>
+Returns a list (string array) of all the available 3D sound devices.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#LoadSound>LoadSound</a></td><td class=docright>
+This function loads a sound file and stores it on a T3DSound class instance.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#SetAudio3DDriver>SetAudio3DDriver</a></td><td class=docright>
+Set a speciffic 3D sound device.
+</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Audio3DDevices>
+<tr><td class=doctop colspan=2>Function Audio3DDevices:String[] ()</td></tr>
+<tr><td class=docleft width=1%>Returns</td><td class=docright>A one dimension array of strings containing the generated list of devices.</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Returns a list (string array) of all the available 3D sound devices.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=LoadSound>
+<tr><td class=doctop colspan=2>Function LoadSound:T3DSound(url:Object, flags:Int = 0)</td></tr>
+<tr><td class=docleft width=1%>Returns</td><td class=docright>The T3DSound object that has been created, if the load process succeeds.</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This function loads a sound file and stores it on a T3DSound class instance.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=SetAudio3DDriver>
+<tr><td class=doctop colspan=2>Function SetAudio3DDriver(Driver:String)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Set a speciffic 3D sound device.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=sListener3D>
+<tr><td class=doctop colspan=2>Type sListener3D Abstract</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Shared class that provides the needed methods to manipulate the global listener object of the Sound3D module.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Every sound in this module is played in relation to the listener. The sound emiters (TSource3D) that are far of the listener do sound quieter, and the ones that are closer sound louder. Also the panning L-R and doppler effect is calculated assuming the listener position as the "center" of the acoustic field.
+In this module, only ONE listener is allowed, so this class is not instanciable, everything can be done using directly the class built-in functions.</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=sListener3D_globals></a>Globals Summary</th></tr><tr><td colspan=2>
+<a href=#ScaleFactor>ScaleFactor</a>
+</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=sListener3D_functions></a>Functions Summary</th></tr>
+<tr><td class=docleft width=1%><a href=#TargetEntity>TargetEntity</a></td><td class=docright>
+This function associates the audio listener to a minib3d entity.
+</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=ScaleFactor>
+<tr><td class=doctop colspan=2>Global ScaleFactor:Float</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This scale factor (by default 1) is used to scale distances, so a higher scale factor will make far objects sound even farer, and near objects will sound even closer.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=TargetEntity>
+<tr><td class=doctop colspan=2>Function TargetEntity(ent:TEntity)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This function associates the audio listener to a minib3d entity.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The audio listener will be set always at the same location as the paramter entity. Moving and rotating this entity, will also move and rotate the listener, and affect the sound.
+In other words, once this function is called, the target minib3d entity is the listener.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=T3DSound>
+<tr><td class=doctop colspan=2>Type T3DSound Extends TSound</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Any sound loaded in the Sound3D module, is a T3DSound.</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=T3DSound_methods></a>Methods Summary</th></tr>
+<tr><td class=docleft width=1%><a href=#Is3DCompatible>Is3DCompatible</a></td><td class=docright>
+This method returns TRUE if the sound can be properly emited in the 3D space.
+</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Is3DCompatible>
+<tr><td class=doctop colspan=2>Method Is3DCompatible:Int()</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This method returns TRUE if the sound can be properly emited in the 3D space.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Usually, stereo sounds are not compatible with space localization. this method will tell if the loaded sound is not 3D-compatible.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=T3DSoundSource>
+<tr><td class=doctop colspan=2>Type T3DSoundSource</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Sound source class. Every sound played, is played by a T3DSoundSource.</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=T3DSoundSource_methods></a>Methods Summary</th></tr>
+<tr><td class=docleft width=1%><a href=#Active>Active</a></td><td class=docright>
+Returns TRUE if this 3D sound source is active.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#Paused>Paused</a></td><td class=docright>
+Returns TRUE if this 3D sound source is currently paused.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#Playing>Playing</a></td><td class=docright>
+Returns TRUE if this 3D sound source is playing any sound.
+</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Active>
+<tr><td class=doctop colspan=2>Method Active()</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Returns TRUE if this 3D sound source is active.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Returns TRUE if this sound source is playing sound or is paused but not completelly stopped. Otherwise returns FALSE.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Paused>
+<tr><td class=doctop colspan=2>Method Paused()</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Returns TRUE if this 3D sound source is currently paused.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Playing>
+<tr><td class=doctop colspan=2>Method Playing()</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Returns TRUE if this 3D sound source is playing any sound.</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=TSource3D>
+<tr><td class=doctop colspan=2>Type TSource3D</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This class is the basic sound emiter class.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Any sound played on Sound3D, is being played by a TSouce3D object, and listened by the Listener3D object.<br>
+See also <a href=#Load3DSound>Load3DSound</a> <a href=#EmitSound>EmitSound</a> and <a href=#PlayMusic>PlayMusic</a>.</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=TSource3D_methods></a>Methods Summary</th></tr>
+<tr><td class=docleft width=1%><a href=#Free>Free</a></td><td class=docright>
+This method free the resources associated to this object, and also stops sound reproduction.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#isPlaying>isPlaying</a></td><td class=docright>
+Returns TRUE if the TSource3D sound is being played.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#Pause>Pause</a></td><td class=docright>
+Enables or disables the "Paused" status of a TSound3D object.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#PlayMusic>PlayMusic</a></td><td class=docright>
+Plays a sound discarding any 3D information.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#SetRate>SetRate</a></td><td class=docright>
+This method let's you modify the rate of the sound being played.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#SetSpeedVector>SetSpeedVector</a></td><td class=docright>
+Set the 3D speed vector of this Source3D.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#SetVolume>SetVolume</a></td><td class=docright>
+Set's the TSource3D object volume.
+</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=TSource3D_functions></a>Functions Summary</th></tr>
+<tr><td class=docleft width=1%><a href=#Create>Create</a></td><td class=docright>
+This function creates a new TSource3D instance, and returns it.
+</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Free>
+<tr><td class=doctop colspan=2>Method Free()</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This method free the resources associated to this object, and also stops sound reproduction.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=isPlaying>
+<tr><td class=doctop colspan=2>Method isPlaying:Byte()</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Returns TRUE if the TSource3D sound is being played.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Pause>
+<tr><td class=doctop colspan=2>Method Pause(Paused:Int = True)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Enables or disables the "Paused" status of a TSound3D object.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=PlayMusic>
+<tr><td class=doctop colspan=2>Method PlayMusic(_Sound:T3DSound, Loop:Byte = False)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Plays a sound discarding any 3D information.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Using this function, the sound will be played ignoring any 3D aspect.
+This is the method used to play background music.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=SetRate>
+<tr><td class=doctop colspan=2>Method SetRate(Rate:Float)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This method let's you modify the rate of the sound being played.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=SetSpeedVector>
+<tr><td class=doctop colspan=2>Method SetSpeedVector(X:Float, Y:Float, Z:Float)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Set the 3D speed vector of this Source3D.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>If this sound source is attached to a moving entity on minib3d, you can set its speed 3D vector in order to get an accurate and reallistic doppler effect.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=SetVolume>
+<tr><td class=doctop colspan=2>Method SetVolume(vol:Float = 1.0)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Set's the TSource3D object volume.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Create>
+<tr><td class=doctop colspan=2>Function Create:TSource3D(ent:TEntity)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>This function creates a new TSource3D instance, and returns it.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>When using this method, the internal OpenAL channel is created as 'static'.
+for regular use it is recommended to create the <a href=#TSource3D>TSource3D</a> object using the <a href=#PlayMusic>PlayMusic</a> function or the <a href=#EmitSound>EmitSound</a> function.</td></tr>
+</table>
+<br>
+<h2 id=modinfo>Module Information</h2>
+<table width=100%>
+<tr><th width=1%>Author</th><td>Mark Sibly (OpenAL Driver)</td></tr>
+<tr><th width=1%>Author</th><td>Klepto2 3Dsound conversion</td></tr>
+<tr><th width=1%>Author</th><td>Manel Ibáñez: 1.2 changes</td></tr>
+<tr><th width=1%>Modserver</th><td>blide</td></tr>
+<tr><th width=1%>v1.2.0</th><td>changed modserver to blide, as this is a forked version based on klepto2 latest release (2 years ago)</td></tr>
+<tr><th width=1%>v1.2.0</th><td>Increased the space-size subjective gain reduction</td></tr>
+<tr><th width=1%>v1.2.0</th><td>Added the SetSpeed method to activate doppler effect on OpenAL</td></tr>
+<tr><th width=1%>v1.2.0</th><td>Most functions now return a valid handler object</td></tr>
+<tr><th width=1%>v1.2.0</th><td>Fixed a bug when a TSource3D was being updated for a disposed TEntity</td></tr>
+<tr><th width=1%>v1.2.0</th><td>Entities can now emit loop sounds (ideal for motors, fire sound, etc.)</td></tr>
+<tr><th width=1%>v1.2.1</th><td>Fixed an issue with SetVolume. It was not working properly for emited sound</td></tr>
+<tr><th width=1%>v1.2.1</th><td>Fixed an issue with the ScaleFactor value not being affecting the listener SPL emulator</td></tr>
+<tr><th width=1%>v1.2.1</th><td>Documentation improved</td></tr>
+<tr><th width=1%>v1.2.1</th><td>Added a console-message on debug mode when loading audio samples not compatible with 3D positioning</td></tr>
+<tr><th width=1%>v1.2.1</th><td>Added a is3DCompatible method for the TSound3D class</td></tr>
+<tr><th width=1%>v1.2.2</th><td>Fixed a possible memory leak. Emiter was not released properly when the sound had ended playing (and it was kept open until the minib3d TEntity was freed)</td></tr>
+<tr><th width=1%>v1.2.3</th><td>Added method Pause to the TSound3D class</td></tr>
+<tr><th width=1%>v1.2.3</th><td>Added method Rate to the TSound3D class</td></tr>
+</body></html>
